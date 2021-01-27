@@ -2,7 +2,7 @@ name: 'ceshi'
 description: 'ceshi'
 runs:
   using: 'composite'
-  staps:
+  steps:
     - shell: php -a
       run: |
         echo "hello php";
