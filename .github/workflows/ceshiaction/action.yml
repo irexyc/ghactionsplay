@@ -3,10 +3,13 @@ description: 'ceshi'
 runs:
   using: 'composite'
   steps:
-    - shell: php {0}
+    - shell: php -ddisplay_errors=1 -d {0}
       run: |
         <?php
-        echo "hello php";
-        $a = json_decode(file_get_contents("https://windows.php.net/downloads/releases/releases.json"));
+        error_reporting(E_ALL);
+        echo "hello php\n";
+        $f = file_get_contents("https://windows.php.net/downloads/releases/releases.json");
+        var_dump($f);
+        $a = json_decode($f);
         var_dump($a);
-        echo "bye php";
+        echo "bye php\n";
