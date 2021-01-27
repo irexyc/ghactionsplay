@@ -1,0 +1,20 @@
+name: ceshi
+on: [push]
+jobs:
+  ceshici:
+    name: ceshi CI
+    runs-on: "${{ matrix.os }}"
+    strategy:
+      matrix:
+        os: [windows-latest]
+      max-parallel: 1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          tools: phpize
+          coverage: none
