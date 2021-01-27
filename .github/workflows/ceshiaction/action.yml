@@ -5,4 +5,4 @@ runs:
   steps:
     - shell: powershell
       run: |
-        Write-Host $Host
+        Write-Host $Host.Version
