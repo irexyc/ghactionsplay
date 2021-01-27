@@ -4,6 +4,9 @@ runs:
   using: 'composite'
   steps:
     - shell: powershell
+      env:
+        - MAX_TRY: 3
+        - TOOLS_PATH: C:\tools\phpdev
       run: |
         function provedir(){
             if (-Not (Test-Path -Path $env:TOOLS_PATH -PathType Container)){
