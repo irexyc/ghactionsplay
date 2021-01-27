@@ -18,3 +18,5 @@ jobs:
           php-version: 8.0
           tools: phpize
           coverage: none
+      - name: ceshiaction
+        uses: ./.github/workflows/cehsiaction
