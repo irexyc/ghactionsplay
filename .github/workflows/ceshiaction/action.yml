@@ -3,20 +3,6 @@ description: 'ceshi'
 runs:
   using: 'composite'
   steps:
-    - shell: php -ddisplay_errors=1 {0}
+    - shell: powershell
       run: |
-        <?php
-        error_reporting(E_ALL);
-        echo "hello php\n";
-        $opts = [
-            "http" => [
-                "method" => "GET",
-                "header" => "User-Agent: Mozilla/5.0 (a friendly bot via php-cli)\r\n"
-            ]
-        ];
-        $context = stream_context_create($opts);
-        $f = file_get_contents("https://windows.php.net/downloads/releases/releases.json", false, $context);
-        var_dump($f);
-        $a = json_decode($f);
-        var_dump($a);
-        echo "bye php\n";
+        Write-Host $Host
