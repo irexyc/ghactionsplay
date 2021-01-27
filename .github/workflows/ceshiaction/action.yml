@@ -3,7 +3,7 @@ description: 'ceshi'
 runs:
   using: 'composite'
   steps:
-    - shell: php -ddisplay_errors=1 -d {0}
+    - shell: php -ddisplay_errors=1 {0}
       run: |
         <?php
         error_reporting(E_ALL);
