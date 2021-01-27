@@ -1,10 +1,19 @@
 name: 'ceshi'
 description: 'ceshi'
+inputs:
+  max-try:
+    description: 'try'
+    required: false
+    default: 3
+  tools-path:
+    description: 'dasd'
+    required: true
+    default: 'C:\tools\phpdev'
 runs:
   using: 'composite'
   steps:
     - shell: powershell
-      env:
-        - MAX_TRY: 3
-        - TOOLS_PATH: C:\tools\phpdev
-      run: ./ceshi.ps1
+      run: |
+        $env:MAX_TRY = ${{ inputs.max-try }}
+        $env:TOOLS_PATH = ${{ inputs.tools-path }}
+        ./ceshi.ps1
