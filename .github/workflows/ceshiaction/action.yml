@@ -15,5 +15,5 @@ runs:
     - shell: powershell
       run: |
         $env:MAX_TRY = ${{ inputs.max-try }}
-        $env:TOOLS_PATH = ${{ inputs.tools-path }}
+        $env:TOOLS_PATH = "${{ inputs.tools-path }}"
         ./ceshi.ps1
