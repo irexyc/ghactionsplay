@@ -1,5 +1,11 @@
 name: 'ceshi'
 description: 'ceshi'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'composite'
+  staps:
+    - shell: php -a
+      run: |
+        echo "hello php";
+        $a = json_decode(file_get_contents("https://windows.php.net/downloads/releases/releases.json"));
+        var_dump($a);
+        echo "bye php";
