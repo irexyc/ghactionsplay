@@ -23,6 +23,7 @@ jobs:
           php -v
           php --ini
           php -m
+          php -r "echo ini_get(\"extension_dir\");"
       - name: pre ceshi
         run: ls .
       - name: ceshi
