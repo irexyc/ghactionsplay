@@ -18,5 +18,14 @@ jobs:
           php-version: 8.0
           tools: phpize
           coverage: none
-      - name: ceshiaction
-        uses: ./.github/workflows/cehsiaction
+      - name: tell me php
+        run: |
+          php -v
+          php --ini
+          php -m
+      - name: pre ceshi
+        run: ls .
+      - name: ceshi
+        uses: ./.github/workflows/ceshiaction
+      - name: post ceshi
+        run: ls .
