@@ -6,7 +6,7 @@ jobs:
     runs-on: "${{ matrix.os }}"
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [windows-latest, windows-2016]
       max-parallel: 1
     steps:
       - name: Checkout
