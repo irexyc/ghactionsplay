@@ -10,6 +10,7 @@ jobs:
       max-parallel: 1
     steps:
       - name: Checkout
+        id: checkout
         uses: actions/checkout@v1
       - name: Plays
         shell: cmd
