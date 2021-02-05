@@ -1,6 +1,13 @@
 name: ceshi
 on: [push]
 jobs:
+  paly:
+    name: play!
+    runs-on: "macos-latest"
+    steps:
+      - name: play
+        run: |
+          echo cpunum `nproc`
   ceshici:
     name: ceshi CI
     runs-on: "${{ matrix.os }}"
