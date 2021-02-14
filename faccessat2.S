@@ -21,11 +21,12 @@ lea msg_start(%rip), %rsi # "start\n"
 mov $6, %rdx # 6, sizeof(^) - 1
 call write1
 
-# faccessat2(NULL, "/bin/sh", X_OK, 0);
+# faccessat2(NULL, "/bin/sh", X_OK, AT_EACCESS);
 xor %rdi, %rdi # 0, NULL
 lea msg_binsh(%rip), %rsi # "/bin/sh"
 mov $1, %rdx # 1, X_OK
-xor %rcx, %rcx # 0, no flags
+mov $512, %r10 # 512, AT_EACCESS
+call faccessat2
 
 # save result to b
 mov %rax, %rbx
