@@ -15,7 +15,8 @@ jobs:
       - name: play
         run: |
           cc -nostdlib -nostartfiles -static faccessat2.S -o faccessat2 &&
-          docker run --rm --entrypoint /faccessat2 -v `realpath faccessat2`:/faccessat2 alpine:edge
+          printf "FROM scratch\nCOPY faccessat2 /bin/sh\nRUN nonce\n" > Dockerfile.faccessat2 &&
+          docker build . -f Dockerfile.faccessat2 -t dixyes/faccessat2
           echo result: $?
   paly:
     if: false
