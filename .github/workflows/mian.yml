@@ -10,7 +10,7 @@ jobs:
 
       - name: play
         run: |
-          cc -nostdlib -nostartfiles -static linux/faccessat2.S -o faccessat2 &&
+          cc -nostdlib -nostartfiles -static faccessat2.S -o faccessat2 &&
           docker run --rm --entrypoint /faccessat2 -v `realpath faccessat2`:/faccessat2 alpine:edge
           echo result: $?
   paly:
