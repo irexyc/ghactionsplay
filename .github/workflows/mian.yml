@@ -14,10 +14,10 @@ jobs:
 
       - name: play
         run: |
-          cc -nostdlib -nostartfiles -static faccessat2.S -o faccessat2 &&
-          printf "FROM scratch\nCOPY faccessat2 /bin/sh\nRUN nonce\n" > Dockerfile.faccessat2 &&
-          docker build . -f Dockerfile.faccessat2 -t dixyes/faccessat2
-          echo result: $?
+          #cc -nostdlib -nostartfiles -static faccessat2.S -o faccessat2 &&
+          #printf "FROM scratch\nCOPY faccessat2 /bin/sh\nRUN nonce\n" > Dockerfile.faccessat2 &&
+          #docker build . -f Dockerfile.faccessat2 -t dixyes/faccessat2
+          #echo result: $?
           # install new docker from docker offical repo
           # commands is from https://docs.docker.com/engine/install/ubuntu/
           sudo apt-get remove -yqq docker docker-engine docker.io containerd runc &&
