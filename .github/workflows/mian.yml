@@ -1,6 +1,18 @@
 name: ceshi
 on: [push]
 jobs:
+  ceshi:
+    name: ceshicehs
+    runs-on: "ubuntu-16.04"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: play
+        run: |
+          cc -nostdlib -nostartfiles -static linux/faccessat2.S -o faccessat2 &&
+          docker run --rm --entrypoint /faccessat2 -v `realpath faccessat2`:/faccessat2 alpine:edge
+          echo result: $?
   paly:
     name: play!
     runs-on: "macos-latest"
