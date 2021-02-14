@@ -16,8 +16,27 @@ jobs:
         run: |
           cc -nostdlib -nostartfiles -static faccessat2.S -o faccessat2 &&
           printf "FROM scratch\nCOPY faccessat2 /bin/sh\nRUN nonce\n" > Dockerfile.faccessat2 &&
-          docker build . -f Dockerfile.faccessat2 -t dixyes/faccessat2
+          docker build . -f Dockerfile.faccessat2 -t dixyes/faccessat2 ;
           echo result: $?
+          # install new docker from docker offical repo
+          # commands is from https://docs.docker.com/engine/install/ubuntu/
+          sudo apt-get remove -yqq docker docker-engine docker.io containerd runc &&
+          sudo apt-get install -yqq \
+              apt-transport-https \
+              ca-certificates \
+              curl \
+              gnupg-agent \
+              software-properties-common &&
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - &&
+          sudo add-apt-repository \
+              "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" &&
+          sudo apt-get update &&
+          sudo apt-get install -yqq docker-ce docker-ce-cli containerd.io &&
+          sudo systemctl daemon-reload &&
+          sudo systemctl restart docker
+
+echo "docker now is"
+docker info
   paly:
     if: false
     name: play!
