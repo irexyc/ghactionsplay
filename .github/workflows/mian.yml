@@ -3,6 +3,7 @@ on: [push]
 jobs:
   ceshi:
     name: ceshicehs
+    if: false
     runs-on: "${{ matrix.os }}"
     strategy:
       matrix:
@@ -46,6 +47,27 @@ jobs:
       - name: play
         run: |
           echo cpunum `nproc`
+  paly2:
+    name: play2
+    runs-on: "ubuntu-latest"
+    outputs:
+      ceshi: ${{steps.p1.outputs.ceshi}}
+    strategy:
+      matrix:
+        ceshi: [1, 2, 3]
+    steps:
+      - name: play1
+        id: p1
+        run: |
+          echo "::set-output name=a::${{ matrix.ceshi }}"
+  play3:
+    name: play3
+    runs-on: "ubuntu-latest"
+    needs: paly2
+    steps:
+      - name: pp
+        run: |
+          echo "fu: ${{ needs.paly2.outputs.ceshi }}"
   ceshici:
     if: false
     name: ceshi CI
