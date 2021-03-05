@@ -51,7 +51,7 @@ jobs:
     name: play2
     runs-on: "ubuntu-latest"
     outputs:
-      ceshi: ${{steps.p1.outputs.ceshi}}
+      ceshi: ${{steps.p1.outputs.a}}
     strategy:
       matrix:
         ceshi: [1, 2, 3]
