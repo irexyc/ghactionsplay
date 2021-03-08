@@ -113,6 +113,7 @@ jobs:
         os: [ "ubuntu-latest", "macos-latest", "windows-latest"]
         ver: [ "v1", "v2", "master" ]
       max-parallel: 9
+      fail-fast: false
     steps:
       - name: fetch setup-php
         uses: actions/checkout@v2
