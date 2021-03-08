@@ -103,3 +103,23 @@ jobs:
         uses: ./.github/workflows/ceshiaction
       - name: post ceshi
         run: ls .
+  ceshici2:
+    if: false
+    name: ceshi CI2
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          tools: phpize
+          coverage: none
+        env:
+          phpts: ts
+      - name: tell me php
+        run: |
+          php -v
+          php --ini
+          php -m
+          php -r "echo ini_get('extension_dir');"
+  
