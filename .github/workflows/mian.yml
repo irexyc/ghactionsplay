@@ -115,7 +115,7 @@ jobs:
       max-parallel: 9
     steps:
       - name: Setup PHP
-        uses: shivammathur/setup-php@master
+        uses: shivammathur/setup-php@${{matrix.ver}}
         with:
           php-version: 8.0
           tools: phpize
