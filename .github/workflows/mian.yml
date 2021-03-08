@@ -114,8 +114,15 @@ jobs:
         ver: [ "v1", "v2", "master" ]
       max-parallel: 9
     steps:
+      - name: fetch setup-php
+        uses: actions/checkout@v2
+        with:
+          reposity: shivammathur/setup-php
+          ref: ${{matrix.ver}}
+          path: setup-php
+
       - name: Setup PHP
-        uses: shivammathur/setup-php@${{matrix.ver}}
+        uses: ./setup-php
         with:
           php-version: 8.0
           tools: phpize
