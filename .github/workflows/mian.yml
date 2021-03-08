@@ -106,8 +106,13 @@ jobs:
       - name: post ceshi
         run: ls .
   ceshici2:
-    name: ceshi CI2
-    runs-on: "ubuntu-latest"
+    name: ceshi CI2 on ${{ matrix.os }} ${{ matrix.ver }}
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [ "ubuntu-latest", "macos-latest", "windows-latest"]
+        ver: [ "v1", "v2", "master" ]
+      max-parallel: 9
     steps:
       - name: Setup PHP
         uses: shivammathur/setup-php@master
@@ -118,9 +123,10 @@ jobs:
         env:
           phpts: ts
       - name: tell me php
+        shell: bash
         run: |
           php -v
-          php --ini
-          php -m
-          php -r "echo ini_get('extension_dir');"
+          #php --ini
+          #php -m
+          #php -r "echo ini_get('extension_dir');"
   
