@@ -117,7 +117,7 @@ jobs:
       - name: fetch setup-php
         uses: actions/checkout@v2
         with:
-          reposity: shivammathur/setup-php
+          repository: shivammathur/setup-php
           ref: ${{matrix.ver}}
           path: setup-php
 
