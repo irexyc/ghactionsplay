@@ -144,5 +144,5 @@ jobs:
     steps:
       - name: ceshi
         run: |
-          docker run --rm -it --name ceshi mcr.microsoft.com/windows/servercore echo hello
+          docker run --rm --name ceshi mcr.microsoft.com/windows/servercore echo hello
   
