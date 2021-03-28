@@ -106,6 +106,7 @@ jobs:
       - name: post ceshi
         run: ls .
   ceshici2:
+    if: false
     name: ceshi CI2 on ${{ matrix.os }} ${{ matrix.ver }}
     runs-on: ${{matrix.os}}
     strategy:
@@ -137,4 +138,11 @@ jobs:
           #php --ini
           #php -m
           #php -r "echo ini_get('extension_dir');"
+  ceshix:
+    name: ceshi
+    runs-on: "windows-latest"
+    steps:
+      - name: ceshi
+        run: |
+          docker run --rm -it --name ceshi mcr.microsoft.com/windows/servercore echo hello
   
