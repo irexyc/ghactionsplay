@@ -143,6 +143,9 @@ jobs:
     runs-on: "windows-latest"
     steps:
       - name: ceshi
+        shell: powershell
         run: |
+          which pwsh
+          which powershell
           docker run --rm --name ceshi mcr.microsoft.com/windows/servercore echo hello
   
