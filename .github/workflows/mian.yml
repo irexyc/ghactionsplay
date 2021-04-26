@@ -143,9 +143,19 @@ jobs:
     runs-on: "windows-latest"
     steps:
       - name: ceshi
+        if: false
         shell: powershell
         run: |
           which pwsh
           which powershell
           docker run --rm --name ceshi mcr.microsoft.com/windows/servercore echo hello
-  
+      - name: hgh
+        shell: cmd
+        run: |
+          ECHO ::group::Start MSVC environment
+          FOR /F "USEBACKQ DELIMS=" %%i in (`vswhere.exe -prerelease -latest -property installationPath`) do (
+            IF EXIST "%%i\Common7\Tools\vsdevcmd.bat" (
+              CALL "%%i\Common7\Tools\vsdevcmd.bat"
+            )
+          )
+          where clang_rt.*
