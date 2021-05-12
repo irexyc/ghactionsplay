@@ -145,7 +145,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@master
         with:
-          php-version: "8.1"
+          php-version: "master"
           # ini-values: pcov.directory=lib
           # coverage: pcov
           coverage: none
