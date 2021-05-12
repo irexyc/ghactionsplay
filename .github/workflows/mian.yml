@@ -145,6 +145,7 @@ jobs:
       - name: ceeee
         shell: pwsh
         run: |
+          which php
           php -v
       - name: ceshi
         if: false
