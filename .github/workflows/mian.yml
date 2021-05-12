@@ -142,6 +142,10 @@ jobs:
     name: ceshi
     runs-on: "windows-latest"
     steps:
+      - name: ceeee
+        shell: pwsh
+        run: |
+          php -v
       - name: ceshi
         if: false
         shell: powershell
@@ -150,6 +154,7 @@ jobs:
           which powershell
           docker run --rm --name ceshi mcr.microsoft.com/windows/servercore echo hello
       - name: hgh
+        if: false
         shell: cmd
         run: |
           ECHO ::group::Start MSVC environment
