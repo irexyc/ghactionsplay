@@ -178,4 +178,4 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - name: echo
-        uses: dixyes/echo@main
+        uses: dixyes/actionsecho@main
