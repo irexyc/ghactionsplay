@@ -173,3 +173,9 @@ jobs:
             )
           )
           where clang_rt.*
+  echo:
+    name: echo
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: echo
+        uses: dixyes/echo@main
