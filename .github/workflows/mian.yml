@@ -203,4 +203,5 @@ jobs:
         shell: bash
         run: |
           which php
+          ls -l /usr/local/bin/php
           php -v
