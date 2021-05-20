@@ -195,3 +195,12 @@ jobs:
         shell: bash
         run: |
           which php
+  echo3:
+    name: echo3
+    runs-on: "macos-latest"
+    steps:
+      - name: sha2
+        shell: bash
+        run: |
+          which php
+          php -v
