@@ -213,14 +213,13 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os: [ 'macos-latest', 'ubuntu-latest' ]
+        os: [ 'windows-latest', 'macos-latest', 'ubuntu-latest' ]
     env:
-      MYSQL_WORKDIR: '/tmp/mysql'
+      MYSQL_WORKDIR: ${{ 'windows-latest' == matrix.os && 'C:/mysql' || '/tmp/mysql'}}
     steps:
-      - name: gen conf
+      - name: run svr
         shell: bash
         run: |
-          mkdir -p ${MYSQL_WORKDIR}/data
           cat > ${MYSQL_WORKDIR}/my.cnf <<EOF
           [mysql]
           protocol=TCP
@@ -241,10 +240,8 @@ jobs:
           binlog_checksum=NONE
           binlog_format=ROW
           log_error=error.log
-      - name: run
-        shell: bash
-        run: |
-          MYSQL_WORKDIR=`realpath ${{env._MYSQL_WORKDIR}}`
+          EOF
+          mkdir -p ${MYSQL_WORKDIR}/data
           mysqld --defaults-file=${MYSQL_WORKDIR}/my.cnf --initialize-insecure
           mysqld --defaults-file=${MYSQL_WORKDIR}/my.cnf --daemonize
       - name: show me info
