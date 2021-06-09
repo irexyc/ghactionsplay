@@ -241,6 +241,7 @@ jobs:
           binlog_format=ROW
           EOF
       - name: run svc
+        shell: cmd
         run: |
           echo initialize
           mysqld --defaults-file=${{env.MYSQL_WORKDIR}}/my.cnf --initialize-insecure
