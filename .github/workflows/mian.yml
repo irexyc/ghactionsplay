@@ -213,14 +213,15 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os: [ 'windows-latest', 'macos-latest', 'ubuntu-latest' ]
+        os: [ 'macos-latest', 'ubuntu-latest' ]
+    env:
+      MYSQL_WORKDIR: '/tmp/mysql'
     steps:
       - name: gen conf
         shell: bash
         run: |
-          WORKDIR=`echo '${{github.workspace}}' | sed 's|\\|/|g'`/mysql
-          mkdir -p ${WORKDIR}/data
-          cat > ${WORKDIR}/my.cnf <<EOF
+          mkdir -p ${MYSQL_WORKDIR}/data
+          cat > ${MYSQL_WORKDIR}/my.cnf <<EOF
           [mysql]
           protocol=TCP
           port=3306
@@ -229,9 +230,9 @@ jobs:
           [mysqld]
           skip-host-cache
           skip-name-resolve
-          pid_file=${WORKDIR}/mysqld.pid
-          socket=${WORKDIR}/mysqld.sock
-          datadir=${WORKDIR}/data
+          pid_file=${MYSQL_WORKDIR}/mysqld.pid
+          socket=${MYSQL_WORKDIR}/mysqld.sock
+          datadir=${MYSQL_WORKDIR}/data
           bind-address=127.0.0.1
           port=3306
           symbolic-links=0
@@ -243,12 +244,11 @@ jobs:
       - name: run
         shell: bash
         run: |
-          WORKDIR=`echo '${{github.workspace}}' | sed 's|\\|/|g'`/mysql
-          mysqld --defaults-file=${WORKDIR}/my.cnf --initialize-insecure
-          mysqld --defaults-file=${WORKDIR}/my.cnf --daemonize
+          MYSQL_WORKDIR=`realpath ${{env._MYSQL_WORKDIR}}`
+          mysqld --defaults-file=${MYSQL_WORKDIR}/my.cnf --initialize-insecure
+          mysqld --defaults-file=${MYSQL_WORKDIR}/my.cnf --daemonize
       - name: show me info
         shell: bash
         run: |
-          WORKDIR=`echo '${{github.workspace}}' | sed 's|\\|/|g'`/mysql
           mysql --host=127.0.0.1 --port=3306 --user=root -e "show databases;"
 
