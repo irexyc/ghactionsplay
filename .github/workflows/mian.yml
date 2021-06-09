@@ -220,6 +220,7 @@ jobs:
       - name: run svr
         shell: bash
         run: |
+          echo gen conf
           mkdir -p ${MYSQL_WORKDIR}/data
           cat > ${MYSQL_WORKDIR}/my.cnf <<EOF
           [mysql]
@@ -240,10 +241,11 @@ jobs:
           log_bin=somebinlog
           binlog_checksum=NONE
           binlog_format=ROW
-          log_error=error.log
           EOF
+          echo initialize
           mysqld --defaults-file=${MYSQL_WORKDIR}/my.cnf --initialize-insecure
-          mysqld --defaults-file=${MYSQL_WORKDIR}/my.cnf --daemonize
+          echo daemon
+          mysqld --defaults-file=${MYSQL_WORKDIR}/my.cnf --daemonize log_error=error.log
       - name: show me info
         shell: bash
         run: |
