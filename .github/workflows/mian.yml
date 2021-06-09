@@ -221,6 +221,7 @@ jobs:
       - name: gen conf
         shell: bash
         run: |
+          ${{ 'macOS' == runner.os && 'brew install mysql' || ''}}
           echo gen conf
           mkdir -p ${MYSQL_WORKDIR}/data
           cat > ${MYSQL_WORKDIR}/my.cnf <<EOF
