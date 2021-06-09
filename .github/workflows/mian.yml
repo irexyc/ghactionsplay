@@ -210,14 +210,45 @@ jobs:
           php -v
   ceshimysq:
     name: mysqlceshi
-    runs-on: "windows-latest"
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [ 'windows-latest', 'macos-latest', 'ubuntu-latest' ]
     steps:
-      - name: ceshi
-        shell: cmd
+      - name: gen conf
+        shell: bash
         run: |
-          where mysql
-          where mysqld
-          dir "C:\Program Files\MySQL\MySQL Server 5.7"
-          dir "C:\Program Files\MySQL"
-          dir "C:\Program Files (x86)\MySQL"
-          dir C:\Users\Administrator\MySQL
+          WORKDIR=`echo '${{github.workspace}}' | sed 's|\\|/|g'`/mysql
+          mkdir -p ${WORKDIR}/data
+          cat > ${WORKDIR}/my.cnf <<EOF
+          [mysql]
+          protocol=TCP
+          port=3306
+          user=root
+
+          [mysqld]
+          skip-host-cache
+          skip-name-resolve
+          pid_file=${WORKDIR}/mysqld.pid
+          socket=${WORKDIR}/mysqld.sock
+          datadir=${WORKDIR}/data
+          bind-address=127.0.0.1
+          port=3306
+          symbolic-links=0
+          server-id=1
+          log_bin=somebinlog
+          binlog_checksum=NONE
+          binlog_format=ROW
+          log_error=error.log
+      - name: run
+        shell: bash
+        run: |
+          WORKDIR=`echo '${{github.workspace}}' | sed 's|\\|/|g'`/mysql
+          mysqld --defaults-file=${WORKDIR}/my.cnf --initialize-insecure
+          mysqld --defaults-file=${WORKDIR}/my.cnf --daemonize
+      - name: show me info
+        shell: bash
+        run: |
+          WORKDIR=`echo '${{github.workspace}}' | sed 's|\\|/|g'`/mysql
+          mysql --host=127.0.0.1 --port=3306 --user=root -e "show databases;"
+
