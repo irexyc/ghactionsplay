@@ -220,6 +220,7 @@ jobs:
       - name: run svr
         shell: bash
         run: |
+          mkdir -p ${MYSQL_WORKDIR}/data
           cat > ${MYSQL_WORKDIR}/my.cnf <<EOF
           [mysql]
           protocol=TCP
@@ -241,7 +242,6 @@ jobs:
           binlog_format=ROW
           log_error=error.log
           EOF
-          mkdir -p ${MYSQL_WORKDIR}/data
           mysqld --defaults-file=${MYSQL_WORKDIR}/my.cnf --initialize-insecure
           mysqld --defaults-file=${MYSQL_WORKDIR}/my.cnf --daemonize
       - name: show me info
