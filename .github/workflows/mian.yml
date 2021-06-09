@@ -241,7 +241,7 @@ jobs:
           binlog_format=ROW
           EOF
       - name: run svr
-        shell: ${{ 'windows-latest' == matrix.os && 'cmd' || 'bash' }}
+        shell: bash
         run: |
           echo initialize
           mysqld "--defaults-file=${{env.MYSQL_WORKDIR}}/my.cnf" --initialize-insecure
