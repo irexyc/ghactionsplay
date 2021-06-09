@@ -214,6 +214,7 @@ jobs:
     strategy:
       matrix:
         os: [ 'windows-latest', 'macos-latest', 'ubuntu-latest' ]
+      fail-fast: false
     env:
       MYSQL_WORKDIR: ${{ 'windows-latest' == matrix.os && 'C:/mysql' || '/tmp/mysql'}}
     steps:
@@ -229,8 +230,6 @@ jobs:
           user=root
 
           [mysqld]
-          skip-host-cache
-          skip-name-resolve
           pid_file=${MYSQL_WORKDIR}/mysqld.pid
           socket=${MYSQL_WORKDIR}/mysqld.sock
           datadir=${MYSQL_WORKDIR}/data
