@@ -244,9 +244,12 @@ jobs:
         shell: cmd
         run: |
           echo initialize
-          mysqld --defaults-file=${{env.MYSQL_WORKDIR}}/my.cnf --initialize-insecure
+          mysqld "--defaults-file=${{env.MYSQL_WORKDIR}}/my.cnf" --initialize-insecure
           echo daemon
-          mysqld --defaults-file=${{env.MYSQL_WORKDIR}}/my.cnf --daemonize --log_error=error.log
+          mysqld "--defaults-file=${{env.MYSQL_WORKDIR}}/my.cnf" --daemonize --log_error=error.log
+          dir C:\mysql
+          dir C:\mysql\data
+          type C:\mysql\data\error.log
       - name: show me info
         shell: bash
         run: |
