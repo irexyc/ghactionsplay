@@ -215,5 +215,9 @@ jobs:
       - name: ceshi
         shell: cmd
         run: |
-          dir "C:/Program Files/MySQL/MySQL Server 5.7"
-          dir C:/Users/Administrator/MySQL
+          where mysql
+          where mysqld
+          dir "C:\Program Files\MySQL\MySQL Server 5.7"
+          dir "C:\Program Files\MySQL"
+          dir "C:\Program Files (x86)\MySQL"
+          dir C:\Users\Administrator\MySQL
