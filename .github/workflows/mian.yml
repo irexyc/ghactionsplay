@@ -218,7 +218,7 @@ jobs:
     env:
       MYSQL_WORKDIR: ${{ 'windows-latest' == matrix.os && 'C:/mysql' || '/tmp/mysql'}}
     steps:
-      - name: run svr
+      - name: gen conf
         shell: bash
         run: |
           echo gen conf
@@ -240,10 +240,12 @@ jobs:
           binlog_checksum=NONE
           binlog_format=ROW
           EOF
+      - name: run svc
+        run: |
           echo initialize
-          mysqld --defaults-file=${MYSQL_WORKDIR}/my.cnf --initialize-insecure 2>&1
+          mysqld --defaults-file=${{env.MYSQL_WORKDIR}}/my.cnf --initialize-insecure
           echo daemon
-          mysqld --defaults-file=${MYSQL_WORKDIR}/my.cnf --daemonize --log_error=error.log 2>&1
+          mysqld --defaults-file=${{env.MYSQL_WORKDIR}}/my.cnf --daemonize --log_error=error.log
       - name: show me info
         shell: bash
         run: |
