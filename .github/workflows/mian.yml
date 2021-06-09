@@ -245,7 +245,7 @@ jobs:
           echo initialize
           mysqld --defaults-file=${MYSQL_WORKDIR}/my.cnf --initialize-insecure
           echo daemon
-          mysqld --defaults-file=${MYSQL_WORKDIR}/my.cnf --daemonize log_error=error.log
+          mysqld --defaults-file=${MYSQL_WORKDIR}/my.cnf --daemonize --log_error=error.log
       - name: show me info
         shell: bash
         run: |
