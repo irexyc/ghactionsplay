@@ -256,7 +256,7 @@ jobs:
           mysqld "--defaults-file=${{env.MYSQL_WORKDIR}}/my.cnf" --initialize-insecure
           echo daemon
           START "" /b mysqld "--defaults-file=${{env.MYSQL_WORKDIR}}/my.cnf" --log_error=error.log
-          type ${{env.MYSQL_WORKDIR}}/data/error.log
+          type C:\mysql\data\error.log
       - name: show me info
         shell: bash
         run: |
