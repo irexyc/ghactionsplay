@@ -139,6 +139,7 @@ jobs:
           #php -m
           #php -r "echo ini_get('extension_dir');"
   ceshix:
+    if: false
     name: ceshi
     runs-on: "windows-latest"
     steps:
@@ -184,6 +185,7 @@ jobs:
       - name: echo
         uses: dixyes/actionsecho@main
   echo2:
+    if: false
     name: echo2
     runs-on: "windows-latest"
     steps:
@@ -196,6 +198,7 @@ jobs:
         run: |
           which php
   echo3:
+    if: false
     name: echo3
     runs-on: "macos-latest"
     steps:
@@ -205,3 +208,12 @@ jobs:
           which php
           ls -l /usr/local/bin/php
           php -v
+  ceshimysq:
+    name: mysqlceshi
+    runs-on: "windows-latest"
+    steps:
+      - name: ceshi
+        shell: cmd
+        run: |
+          dir "C:/Program Files/MySQL/MySQL Server 5.7"
+          dir C:/Users/Administrator/MySQL
