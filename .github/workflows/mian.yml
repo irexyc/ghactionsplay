@@ -228,7 +228,6 @@ jobs:
           protocol=TCP
           port=3306
           user=root
-
           [mysqld]
           pid_file=${MYSQL_WORKDIR}/mysqld.pid
           socket=${MYSQL_WORKDIR}/mysqld.sock
@@ -242,9 +241,9 @@ jobs:
           binlog_format=ROW
           EOF
           echo initialize
-          mysqld --defaults-file=${MYSQL_WORKDIR}/my.cnf --initialize-insecure
+          mysqld --defaults-file=${MYSQL_WORKDIR}/my.cnf --initialize-insecure 2>&1
           echo daemon
-          mysqld --defaults-file=${MYSQL_WORKDIR}/my.cnf --daemonize --log_error=error.log
+          mysqld --defaults-file=${MYSQL_WORKDIR}/my.cnf --daemonize --log_error=error.log 2>&1
       - name: show me info
         shell: bash
         run: |
