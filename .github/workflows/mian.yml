@@ -244,7 +244,7 @@ jobs:
           mysqld "--defaults-file=${{env.MYSQL_WORKDIR}}/my.cnf" --initialize-insecure
           echo daemon
           mysqld "--defaults-file=${{env.MYSQL_WORKDIR}}/my.cnf" ${{ 'Windows' == runner.os && '' || '--daemonize' }} --log_error=error.log
-          cat ${{env.MYSQL_WORKDIR}}/error.log
+          cat ${{env.MYSQL_WORKDIR}}/data/error.log
       - name: show me info
         shell: bash
         run: |
