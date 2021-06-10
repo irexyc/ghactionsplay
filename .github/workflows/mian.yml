@@ -157,12 +157,12 @@ jobs:
           Get-ChildItem -Recurse C:\tools\php
           php -v
       - name: ceshi
-        if: false
+        if: true
         shell: powershell
         run: |
           which pwsh
           which powershell
-          docker run --rm --name ceshi mcr.microsoft.com/windows/servercore echo hello
+          docker run --name ceshi --rm mcr.microsoft.com/windows/servercore:ltsc2019 echo hello
       - name: hgh
         if: false
         shell: cmd
@@ -209,6 +209,7 @@ jobs:
           ls -l /usr/local/bin/php
           php -v
   ceshimysq:
+    if: false
     name: mysqlceshi
     runs-on: ${{matrix.os}}
     strategy:
@@ -264,4 +265,3 @@ jobs:
         shell: bash
         run: |
           mysql --host=127.0.0.1 --port=3306 --user=root -e "show databases;"
-
