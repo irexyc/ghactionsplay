@@ -143,6 +143,7 @@ jobs:
     runs-on: "windows-latest"
     steps:
       - name: Setup PHP
+        if: false
         uses: shivammathur/setup-php@master
         with:
           php-version: "master"
@@ -151,6 +152,7 @@ jobs:
           coverage: none
           extensions: curl,openssl
       - name: ceeee
+        if: false
         shell: pwsh
         run: |
           Get-ChildItem -Recurse C:\tools\php
