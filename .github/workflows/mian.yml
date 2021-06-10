@@ -158,6 +158,7 @@ jobs:
           Get-ChildItem -Recurse C:\tools\php
           php -v
       - name: ceshi
+        if: false
         shell: powershell
         run: |
           which pwsh
@@ -266,3 +267,14 @@ jobs:
         shell: bash
         run: |
           mysql --host=127.0.0.1 --port=3306 --user=root -e "show databases;"
+  wth:
+    name: ceshhhh
+    runs-on: 'ubuntu-latest'
+    strategy:
+      matrix:
+        name: [ '1', '3' ]
+      fail-fast: false
+    steps:
+      - name: echo
+        run: |
+          echo ${{matrix.name}}
