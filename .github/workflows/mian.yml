@@ -1,5 +1,12 @@
 name: ceshi
-on: [push]
+on: 
+  #push:
+  workflow_dispatch:
+    inputs:
+      dasd:
+        description: 'a very very very very very very very very very very very very very very very very very very very very very very very very very very long nonsense'
+        required: false
+        default: '[ a, b ]'
 jobs:
   ceshi:
     name: ceshicehs
@@ -272,7 +279,7 @@ jobs:
     runs-on: 'ubuntu-latest'
     strategy:
       matrix:
-        name: [ '1', '3' ]
+        name: ${{ (github.event.inputs && github.event.inputs.ref) || '[ 1, 2 ]' }}
       fail-fast: false
     steps:
       - name: echo
