@@ -6,7 +6,7 @@ on:
       dasd:
         description: 'a very very very very very very very very very very very very very very very very very very very very very very very very very very long nonsense'
         required: false
-        default: '[ a, b ]'
+        default: '[ "a", "b" ]'
 jobs:
   ceshi:
     name: ceshicehs
@@ -279,7 +279,7 @@ jobs:
     runs-on: 'ubuntu-latest'
     strategy:
       matrix:
-        name: ${{ (github.event.inputs && github.event.inputs.ref) || '[ 1, 2 ]' }}
+        name: ${{ (github.event.inputs && github.event.inputs.ref) || '[ "1", "2" ]' }}
       fail-fast: false
     steps:
       - name: echo
