@@ -183,7 +183,6 @@ jobs:
           )
           where clang_rt.*
   echo:
-    if: false
     name: echo
     runs-on: "ubuntu-latest"
     steps:
