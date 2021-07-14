@@ -190,6 +190,7 @@ jobs:
         shell: bash
         run: |
           which php
+          ghci || :
       - name: echo
         uses: dixyes/actionsecho@main
   echo2:
