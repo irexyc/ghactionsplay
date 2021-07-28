@@ -2,7 +2,7 @@ name: cehshi on run
 
 on:
   workflow_run:
-    workflows: ["mian.yml"]
+    workflows: ["ceshi"]
     branches: [main]
     types: 
       - completed
