@@ -1,0 +1,16 @@
+name: cehshi on run
+
+on:
+  workflow_run:
+    workflows: [".github/workflows/mian.yml"]
+    branches: [main]
+    types: 
+      - completed
+
+jobs:
+   echo:
+    name: echo
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: echo
+        uses: dixyes/actionsecho@main
