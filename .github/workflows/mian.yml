@@ -194,14 +194,18 @@ jobs:
       - name: echo
         uses: dixyes/actionsecho@main
   echo2:
-    if: false
     name: echo2
     runs-on: "windows-latest"
     steps:
       - name: sha2
-        shell: cmd
+        shell: pwsh
         run: |
-          where php
+          try {
+            Get-Contents "C:\Program Files\Common Files\SSL\openssl.cnf"
+          } catch {}
+          try {
+            Get-Contents "C:\usr\local\ssl\openssl.cnf"
+          } catch {}
       - name: sha
         shell: bash
         run: |
