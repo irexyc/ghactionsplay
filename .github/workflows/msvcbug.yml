@@ -15,7 +15,7 @@ jobs:
             mod: 'C:\Program Files\Microsoft Visual Studio\2022\$varient\Common7\Tools\Microsoft.VisualStudio.DevShell.dll'
           - os: "windows-2019"
             vs: "2019"
-            mod: 'C:\Program Files (x86)\Microsoft Visual Studio\2022\$varient\Common7\Tools\Microsoft.VisualStudio.DevShell.dll'
+            mod: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\$varient\Common7\Tools\Microsoft.VisualStudio.DevShell.dll'
       fail-fast: false
     steps:
       - name: ceshi
