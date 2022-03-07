@@ -23,7 +23,7 @@ jobs:
         run: |
           $varient = 'Enterprise'
           Import-Module "${{ matrix.mod }}"
-          Enter-VsDevShell -VsInstallPath 'C:\Program Files\Microsoft Visual Studio\${{matrix.vs}}\$varient\' -DevCmdArguments -arch=x64
+          Enter-VsDevShell -VsInstallPath "C:\Program Files\Microsoft Visual Studio\${{matrix.vs}}\$varient\" -DevCmdArguments -arch=x64
           Write-Output '
           int main()
           {
