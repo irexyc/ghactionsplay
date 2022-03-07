@@ -9,13 +9,19 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        # for vs2022 or vs2019
-        os: [ "windows-latest", "windows-2019" ]
+        include:
+          - os: "windows-latest"
+            vs: "2022"
+          - os: "windows-2019"
+            vs: "2019"
       fail-fast: false
     steps:
       - name: ceshi
         shell: pwsh
         run: |
+          # for Community
+          #Enter-VsDevShell -VsInstallPath 'C:\Program Files\Microsoft Visual Studio\${{matrix.vs}}\Community\' -DevCmdArguments -arch=x64
+          Enter-VsDevShell -VsInstallPath 'C:\Program Files\Microsoft Visual Studio\${{matrix.vs}}\Enterprise\' -DevCmdArguments -arch=x64
           Write-Output '
           int main()
           {
