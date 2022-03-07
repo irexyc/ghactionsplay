@@ -11,19 +11,17 @@ jobs:
       matrix:
         include:
           - os: "windows-latest"
-            vs: "2022"
-            mod: 'C:\Program Files\Microsoft Visual Studio\2022\$varient\Common7\Tools\Microsoft.VisualStudio.DevShell.dll'
+            path: 'C:\Program Files\Microsoft Visual Studio\2022\$varient'
           - os: "windows-2019"
-            vs: "2019"
-            mod: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\$varient\Common7\Tools\Microsoft.VisualStudio.DevShell.dll'
+            oath: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\$varient'
       fail-fast: false
     steps:
       - name: ceshi
         shell: pwsh
         run: |
           $varient = 'Enterprise'
-          Import-Module "${{ matrix.mod }}"
-          Enter-VsDevShell -VsInstallPath "C:\Program Files\Microsoft Visual Studio\${{matrix.vs}}\$varient\" -DevCmdArguments -arch=x64
+          Import-Module "${{ matrix.path }}\Common7\Tools\Microsoft.VisualStudio.DevShell.dll"
+          Enter-VsDevShell -VsInstallPath "${{ matrix.path }}" -DevCmdArguments -arch=x64
           Write-Output '
           #include <locale>
           #include <iostream>
