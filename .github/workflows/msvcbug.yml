@@ -1,0 +1,28 @@
+name: for msvc bug
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ceshi:
+    name: ceshi
+    runs-on: ${{ matrix.os }}
+    matrix:
+      # for vs2022 or vs2019
+      os: [ "windows-latest", "windows-2019" ]
+    steps:
+      - name: ceshi
+        shell: pwsh
+        run: |
+          Write-Output '
+          int main()
+          {
+              struct wchar_codecvt : public std::codecvt<wchar_t, char, std::mbstate_t> {};
+              std::wstring_convert<wchar_codecvt> converter;
+              std::cout << "done" << std::endl;
+              return 0;
+          }
+          ' | Out-File msvcbug.cxx
+
+          & cl msvcbug.cxx -fsanitize=address /MDd /Z7 /EHsc
+          & ./msvcbug.exe
