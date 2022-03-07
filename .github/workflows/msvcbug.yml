@@ -13,7 +13,7 @@ jobs:
           - os: "windows-latest"
             path: 'C:\Program Files\Microsoft Visual Studio\2022\$varient'
           - os: "windows-2019"
-            oath: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\$varient'
+            path: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\$varient'
       fail-fast: false
     steps:
       - name: ceshi
