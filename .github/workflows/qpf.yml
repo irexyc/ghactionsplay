@@ -28,3 +28,13 @@ jobs:
 
           & cl QueryPerformanceFrequency.c
           & ./QueryPerformanceFrequency.exe
+          & cl /MDd QueryPerformanceFrequency.c
+          & ./QueryPerformanceFrequency.exe
+          & cl /MT QueryPerformanceFrequency.c
+          & ./QueryPerformanceFrequency.exe
+          & cl -fsanitize=address /Z7 QueryPerformanceFrequency.c
+          & ./QueryPerformanceFrequency.exe
+          & cl -fsanitize=address /Z7 /MDd QueryPerformanceFrequency.c
+          & ./QueryPerformanceFrequency.exe
+          & cl -fsanitize=address /Z7 /MT QueryPerformanceFrequency.c
+          & ./QueryPerformanceFrequency.exe
