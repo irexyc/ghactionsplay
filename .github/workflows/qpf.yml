@@ -1,0 +1,30 @@
+name: qpf
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ceshi:
+    name: ceshi
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: "windows-latest"
+            path: 'C:\Program Files\Microsoft Visual Studio\2022\$varient'
+          - os: "windows-2019"
+            path: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\$varient'
+      fail-fast: false
+    steps:
+      - name: checkout
+        use: actions/checkout@v2
+
+      - name: ceshi
+        shell: pwsh
+        run: |
+          $varient = 'Enterprise'
+          Import-Module "${{ matrix.path }}\Common7\Tools\Microsoft.VisualStudio.DevShell.dll"
+          Enter-VsDevShell -VsInstallPath "${{ matrix.path }}" -DevCmdArguments -arch=x64
+
+          & cl QueryPerformanceFrequency.c
+          & ./QueryPerformanceFrequency.exe
