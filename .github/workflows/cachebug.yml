@@ -9,6 +9,11 @@ jobs:
     steps:
       - name: install zstd
         run: |
+          # fastmirror is to slow
+          CENTOS_MIRROR='mirror.facebook.net/centos/'
+          sed -i 's/^metalink=/#metalink=/g' /etc/yum.repos.d/*.repo
+          sed -i 's/^mirrorlist=/#mirrorlist=/g' /etc/yum.repos.d/*.repo
+          sed -i 's|^#baseurl=http://mirror\.centos\.org/centos/|baseurl=https://'$CENTOS_MIRROR'|g' /etc/yum.repos.d/*.repo
           yum install -yy zstd
 
       - name: cache
