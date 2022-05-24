@@ -14,6 +14,11 @@ jobs:
           sed -i 's/^metalink=/#metalink=/g' /etc/yum.repos.d/*.repo
           sed -i 's/^mirrorlist=/#mirrorlist=/g' /etc/yum.repos.d/*.repo
           sed -i 's|^#baseurl=http://mirror\.centos\.org/centos/|baseurl=https://'$CENTOS_MIRROR'|g' /etc/yum.repos.d/*.repo
+          yum install -yy epel-release
+          EPEL_MIRROR='mirror.facebook.net/fedora/epel/'
+          sed -i 's/^metalink=/#metalink=/g' /etc/yum.repos.d/*.repo
+          sed -i 's/^mirrorlist=/#mirrorlist=/g' /etc/yum.repos.d/*.repo
+          sed -i 's|^#baseurl=http://download.fedoraproject.org/pub/epel/|baseurl=https://'$EPEL_MIRROR'|g' /etc/yum.repos.d/*.repo
           yum install -yy zstd
 
       - name: cache
