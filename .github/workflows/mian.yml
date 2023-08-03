@@ -12,23 +12,7 @@ jobs:
     name: ceshi
     runs-on: "windows-latest"
     steps:
-      - name: Setup PHP
-        if: false
-        uses: shivammathur/setup-php@master
-        with:
-          php-version: "master"
-          # ini-values: pcov.directory=lib
-          # coverage: pcov
-          coverage: none
-          extensions: curl,openssl
-      - name: ceeee
-        if: false
-        shell: pwsh
-        run: |
-          Get-ChildItem -Recurse C:\tools\php
-          php -v
       - name: ceshi
-        if: false
         shell: powershell
         run: |
           which pwsh
